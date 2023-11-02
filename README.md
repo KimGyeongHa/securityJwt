@@ -1,3 +1,3 @@
 # securityJwt
 
-SECURITY 기본설정
+SPRING SECURITY 공부 1일차
