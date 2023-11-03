@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8087
   servlet:
     context-path: /
     encoding:
@@ -7,16 +7,21 @@ server:
       enabled: true
       force: true
 
+jpa:
+  hibernate:
+    ddl-auto: create #create update none
+    naming:
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  show-sql: true
+  defer-datasource-initialization=true:
+
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/jpashop
+    url: jdbc:h2:tcp://localhost/~/securityJwt
     username: sa
-    password:
+    password: 1234
 
-  mvc:
-    view:
-      prefix: /templates/
-      suffix: .mustache
+
 
 
