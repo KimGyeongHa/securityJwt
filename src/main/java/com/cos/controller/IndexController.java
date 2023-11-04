@@ -1,12 +1,30 @@
 package com.cos.controller;
 
+import com.cos.config.SecurityConifg;
+import com.cos.model.User;
+import com.cos.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 @Controller
 public class IndexController {
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @GetMapping({"/",""})
     public String indexPage(){
         return "index";
@@ -24,18 +42,28 @@ public class IndexController {
     public @ResponseBody String manager(){
         return "manager";
     }
-    @GetMapping("/login")
-    public String login(){
+    @GetMapping("/loginForm")
+    public String loginForm(){
         return "loginForm";
     }
-    @GetMapping("/join")
-    public @ResponseBody String join(){
-        return "join";
+    @GetMapping("/joinForm")
+    public String joinForm() { return "joinForm"; }
+
+    @PostMapping("/join")
+    public String join(User user) {
+        user.setRole("ROLE_USER");
+        String password = user.getPassword();
+        String encodePassword = bCryptPasswordEncoder.encode(password);
+        user.setPassword(encodePassword);
+        userRepository.save(user);
+
+        return "redirect:/loginForm";
     }
 
-    @GetMapping("/joinProc")
-    public @ResponseBody String joinProc(){
-        return "회원가입 완료";
+    @PostMapping("/login")
+    public String login(){
+
+        return "redirect:/";
     }
 
 

@@ -12,8 +12,9 @@ jpa:
     ddl-auto: create #create update none
     naming:
       physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-  show-sql: true
-  defer-datasource-initialization=true:
+      implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    open-in-view: false
+    show-sql: true
 
 spring:
   datasource:
