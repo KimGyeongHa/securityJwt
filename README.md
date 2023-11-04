@@ -1,5 +1,7 @@
 # securityJwt
 
+* Lombok 1.8.26 does not work with JDK21 (EA build 16) openjdk 20으로 실행
+
 SPRING SECURITY 공부 1일차
 * boot 기본설정
 
