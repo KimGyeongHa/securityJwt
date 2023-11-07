@@ -2,6 +2,7 @@ package com.cos.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
@@ -10,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
+
 public class SecurityConifg extends WebSecurityConfigurerAdapter {
 
     @Bean
@@ -29,7 +32,7 @@ public class SecurityConifg extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/loginForm")
-                .loginProcessingUrl("/login")
+                .loginProcessingUrl("/login") // 로그인 주소 호출 시 security가 낚아채서 로그인로직실행
                 .defaultSuccessUrl("/");
     }
 }

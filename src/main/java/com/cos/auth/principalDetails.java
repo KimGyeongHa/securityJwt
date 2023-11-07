@@ -45,17 +45,17 @@ public class principalDetails implements UserDetails {
     }
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     // 조건에 따라 계정을 잠글 수 있게 설정해주는 메서드
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
