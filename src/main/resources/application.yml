@@ -7,21 +7,31 @@ server:
       enabled: true
       force: true
 
-jpa:
-  hibernate:
-    ddl-auto: update #create update none
-    naming:
-      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-    open-in-view: false
-    show-sql: true
-
 spring:
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:tcp://localhost/~/securityJwt
     username: sa
     password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update #create update none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    open-in-view: false
+    show-sql: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 89182413466-kc8lmsae2esdksc7f6hn2e5m2n0j5v9p.apps.googleusercontent.com
+            clientSecret: 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
+            scope:
+              - email
+              - profile
+
 
 
 

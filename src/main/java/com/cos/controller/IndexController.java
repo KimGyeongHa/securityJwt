@@ -66,6 +66,9 @@ public class IndexController {
         return "redirect:/";
     }
 
-
+    @GetMapping("/login/oauth2/code/google")
+    public @ResponseBody String oauth_login(){
+        return "a";
+    }
 
 }

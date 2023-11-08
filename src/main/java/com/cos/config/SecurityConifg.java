@@ -33,6 +33,9 @@ public class SecurityConifg extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/loginForm")
                 .loginProcessingUrl("/login") // 로그인 주소 호출 시 security가 낚아채서 로그인로직실행
-                .defaultSuccessUrl("/");
+                .defaultSuccessUrl("/")
+                .and()
+                .oauth2Login()
+                .loginPage("/loginForm");
     }
 }
