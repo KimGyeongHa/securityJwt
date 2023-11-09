@@ -31,4 +31,19 @@ secured 어노테이션 활성화 -> 원하는 url에 권한설정역할
 prePostEnabled 
 PreAuthorize 어노테이션 활성화 -> 여러개의 권한을 hasRole('ROLE_MANAGE') or hasRole('ROLE_ADMIN') 과 같이 줄 수 있음
 
+
+====================================================================================
+
+SPRING Oauth 2.0 Login
+
+* spring security oauth 2.0 login 기본설정 및 security 설정추가
+
+  카카오
+1. 코드받기(인증)
+2. 엑세스토큰(권한)
+3. 사용자프로필정보를 가져온다
+4. 정보를 토대로 회원가입 자동진행
+
+구글로그인 시 코드 X -> 액세스토큰 + 사용자프로필정보를준다
+
   
