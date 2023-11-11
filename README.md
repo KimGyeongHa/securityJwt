@@ -1,5 +1,7 @@
 # securityJwt
 
+# Authorization Code Grant Type 방식으로 구현
+
 * Lombok 1.8.26 does not work with JDK21 (EA build 16) openjdk 20으로 실행
 
 SPRING SECURITY 공부 1일차
@@ -38,12 +40,55 @@ SPRING Oauth 2.0 Login
 
 * spring security oauth 2.0 login 기본설정 및 security 설정추가
 
-  카카오
-1. 코드받기(인증)
-2. 엑세스토큰(권한)
-3. 사용자프로필정보를 가져온다
-4. 정보를 토대로 회원가입 자동진행
+==============================================================================
 
-구글로그인 시 코드 X -> 액세스토큰 + 사용자프로필정보를준다
+UserDetails 
+security 로그인에 필요한 값을 지정하는 인터페이스
+
+OAuth2User
+OAuth2로그인에 필요한 값을 지정하는 인터페이스
+
+
+* security session 에 Authentication 객체만 들어갈 수 있다.
+
+Authentication 
+로그인 인증정보를 받아올 수 있는 객체 
+
+Authentication의 return값은 Object
+
+일반로그인 시 
+
+Atuentication (UserDetails) Type으로 반환가능
+
+@AuthenticationPrincipal 
+UserDetails를 상속받은 클래스로 인증정보를 받아올 수 있다.
+
+위 두개는 같은 정보를 반환, google login시에는 값 이용불가
+
+
+Oauth2 login시
+ 
+Oauth2 login 정보를 받아오려면 (OAuth2User) Type으로 반환받아야한다.
+
+@AuthenticationPrincipal OAuth2User OAuhth2user 로 값을 받아야한다.
+
+
+로그인 시 구분을 하기 힘듬으로 
+
+userDetails 와 Oauth2User 를 implement하는 class를 만들어 반환한다.
+
+국내 로그인들은 provider에 등록해주어야한다.
+
+UserDetailService or DefaultOAuth2UserService 상속받은 클래스에
+
+재정의 된 loadUser or loadUserByUsername 함수 종료 시 
+
+@AuthenticationPrincipal 어노테이션 생성
+
+
+
+
+
+
 
   
