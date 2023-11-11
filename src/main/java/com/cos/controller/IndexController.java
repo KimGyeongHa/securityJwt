@@ -1,20 +1,17 @@
 package com.cos.controller;
 
-import com.cos.config.SecurityConifg;
+import com.cos.auth.PrincipalDetails;
 import com.cos.model.User;
 import com.cos.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 @Controller
 public class IndexController {
@@ -24,6 +21,20 @@ public class IndexController {
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @GetMapping("/login/test")
+    public @ResponseBody String loginTest(Authentication authentication, @AuthenticationPrincipal PrincipalDetails principalDetails){
+        System.out.println(authentication.getPrincipal());
+        System.out.println(principalDetails.getUser());
+        return "login";
+    }
+
+    @GetMapping("/login/oauth/test")
+    public @ResponseBody String loginOauthTest(Authentication authentication, @AuthenticationPrincipal PrincipalDetails principalDetails){
+        System.out.println((OAuth2User)authentication.getPrincipal());
+        // System.out.println(principalDetails.getUser());
+        return "login";
+    }
 
     @GetMapping({"/",""})
     public String indexPage(){
