@@ -1,4 +1,4 @@
-# Jwt and Security OAuth2.0 Login
+# Security OAuth2.0 Login
 
 # Authorization Code Grant Type 방식으로 구현
 
