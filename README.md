@@ -65,6 +65,7 @@ UserDetails를 상속받은 클래스로 인증정보를 받아올 수 있다.
 
 위 두개는 같은 정보를 반환, google login시에는 값 이용불가
 
+=================================================================
 
 Oauth2 login시
  
@@ -72,12 +73,15 @@ Oauth2 login 정보를 받아오려면 (OAuth2User) Type으로 반환받아야�
 
 @AuthenticationPrincipal OAuth2User OAuhth2user 로 값을 받아야한다.
 
+=================================================================
 
 로그인 시 구분을 하기 힘듬으로 
 
 userDetails 와 Oauth2User 를 implement하는 class를 만들어 반환한다.
 
 국내 로그인들은 provider에 등록해주어야한다.
+
+=================================================================
 
 UserDetailService or DefaultOAuth2UserService 상속받은 클래스에
 
